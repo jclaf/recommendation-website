@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+{% block title %}Results - MyShop{% endblock %}
+
+{% block content %}
+    <section class="py-5">
+        <div class="container px-4 px-lg-5 mt-5">
+            {% if products is defined %}
+                <h2>Search Results</h2>
+                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                    {% for product in products %}
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            {% if product.is_sale %}
+                            <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
+                            {% endif %}
+                            <img class="card-img-top" src="{{ product.image_url }}" alt="{{ product.name }}" />
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <h5 class="fw-bolder">{{ product.name }}</h5>
+                                    {% if product.is_sale %}
+                                    <span class="text-muted text-decoration-line-through">${{ product.old_price }}</span>
+                                    {% endif %}
+                                    ${{ product.price }}
+                                </div>
+                            </div>
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center">
+                                    <a class="btn btn-outline-dark mt-auto" href="{{ url_for('main.product_detail', product_id=product.id) }}">View options</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            {% elif product is defined %}
+            <h2>{{ product.name }}</h2>
+            <img src="{{ product.image_url }}" alt="{{ product.name }}" width="300">
+            <p>{{ product.description }}</p>
+            <p>Category: {{ product.category }}</p>
+            <p>
+                <strong>${{ "%.2f"|format(product.price) }}</strong>
+            </p>
+            
+            <!-- Bloc notation/étoiles et avis -->
+            <div class="mb-3">
+                <span>
+                    {% for i in range(1, 6) %}
+                        {% if product.rating >= i %}
+                            <i class="bi bi-star-fill text-warning"></i>
+                        {% elif product.rating >= i - 0.5 %}
+                            <i class="bi bi-star-half text-warning"></i>
+                        {% else %}
+                            <i class="bi bi-star text-warning"></i>
+                        {% endif %}
+                    {% endfor %}
+                    <span class="ms-2">{{ "%.1f"|format(product.rating) }}/5</span>
+                    <small class="text-muted">({{ product.review_count }} reviews)</small>
+                </span>
+            </div>
+            
+            <form action="#" method="post">
+                <button type="submit" class="btn btn-primary">Add to Cart</button>
+            </form>
+            
+            <!-- Comment Section -->
+            <div class="mt-5">
+                <h4>Leave a Comment</h4>
+                <form action="#" method="post">
+                    <div class="mb-2">
+                        <textarea name="comment" class="form-control" rows="3" placeholder="Write your comment..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-outline-dark">Post Comment</button>
+                </form>
+                <!-- Zone affichage des commentaires (exemple statique, à remplacer par une boucle sur des vrais commentaires) -->
+                <div class="mt-4">
+                    <h5>Customer Comments</h5>
+                    <ul class="list-group">
+                        <!-- Exemple d’un commentaire statique 
+                        <li class="list-group-item">
+                            <strong>Jean :</strong> Excellent produit, livraison rapide !
+                        </li>
+                        -->
+                        {% for comment in comments %}
+                        <li class="list-group-item">
+                            <strong>{{ comment.author }} :</strong> {{ comment.text }}
+                        </li>
+                        {% else %}
+                        <li class="list-group-item text-muted">No comments yet.</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            
+            {% else %}
+                <p>No results found.</p>
+            {% endif %}
+        </div>
+    </section>
+{% endblock %}

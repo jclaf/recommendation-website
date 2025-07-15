@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}About Us - MyShop{% endblock %}
+
+{% block content %}
+<section class="py-5">
+    <div class="container px-4 px-lg-5">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <h1 class="mb-4 text-center">About MyShop</h1>
+                <p>
+                    Welcome to <strong>MyShop</strong>, your trusted online destination for a unique and secure shopping experience! Founded in 2025 by a team of tech and retail enthusiasts, MyShop’s mission is to make quality products accessible to everyone, everywhere.
+                </p>
+                <h3 class="mt-4">Our Story</h3>
+                <p>
+                    MyShop was born out of a passion for e-commerce and a desire to create a user-friendly marketplace where customers can discover a diverse range of products. What started as a small local store has grown into a comprehensive platform serving thousands of satisfied shoppers across France.
+                </p>
+                <h3 class="mt-4">What We Offer</h3>
+                <ul>
+                    <li>Wide selection of electronics, fashion, books, and home essentials</li>
+                    <li>Carefully vetted sellers and authentic brands</li>
+                    <li>Secure payment and fast delivery options</li>
+                    <li>Personalized product recommendations</li>
+                    <li>Responsive customer support available 7 days a week</li>
+                </ul>
+                <h3 class="mt-4">Our Values</h3>
+                <ul>
+                    <li><strong>Trust & Security:</strong> Your data and transactions are protected with state-of-the-art encryption.</li>
+                    <li><strong>Customer Satisfaction:</strong> Easy returns and helpful support for a worry-free experience.</li>
+                    <li><strong>Sustainability:</strong> Partnerships with eco-conscious brands and eco-friendly packaging.</li>
+                </ul>
+                <h3 class="mt-4">Meet the Team</h3>
+                <p>
+                    Our dedicated professionals bring together expertise in technology, logistics, and customer service to build a modern, efficient e-commerce platform. Our office is located in <strong>Aulnay-sous-Bois, Île-de-France</strong>, and we’re proud to be part of the local business community.
+                </p>
+                <h3 class="mt-4">Contact Us</h3>
+                <p>
+                    Have a question or feedback? Reach out at <a href="mailto:support@myshop.com">support@myshop.com</a> or visit our <a href="{{ url_for('main.index') }}">Contact page</a>.
+                </p>
+                <div class="text-center mt-4">
+                    <a class="btn btn-outline-dark" href="{{ url_for('main.index') }}">Back to Home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

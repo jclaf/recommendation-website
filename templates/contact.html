@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}Contact Us - MyShop{% endblock %}
+
+{% block content %}
+<section class="py-5">
+    <div class="container px-4 px-lg-5">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <h1 class="mb-4 text-center">Contact MyShop</h1>
+                <p>
+                    Need assistance, have a question, or want to share your feedback? The MyShop team is here to help! Whether it’s about an order, a product, or simply a suggestion, we respond quickly and with care.
+                </p>
+                <h3 class="mt-4">Contact Form</h3>
+                <form method="post" action="{{ url_for('main.contact') }}">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Your Name*</label>
+                        <input type="text" class="form-control" id="name" name="name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Your Email*</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="subject" class="form-label">Subject</label>
+                        <input type="text" class="form-control" id="subject" name="subject">
+                    </div>
+                    <div class="mb-3">
+                        <label for="message" class="form-label">Message*</label>
+                        <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-dark">Send Message</button>
+                    </div>
+                </form>
+                <h3 class="mt-5">Other Ways to Reach Us</h3>
+                <ul>
+                    <li>Email: <a href="mailto:support@myshop.com">support@myshop.com</a></li>
+                    <li>Phone: <a href="tel:+33123456789">01 23 45 67 89</a></li>
+                    <li>Address: 10 Rue du Commerce, 93600 Aulnay-sous-Bois, Île-de-France, France</li>
+                    <li>Customer Service Hours: Monday to Friday, 9 a.m. to 6 p.m.</li>
+                </ul>
+                <div class="text-center mt-4">
+                    <a class="btn btn-outline-dark" href="{{ url_for('main.index') }}">Back to Home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
